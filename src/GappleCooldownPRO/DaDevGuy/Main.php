@@ -17,7 +17,7 @@ class Main extends PluginBase implements Listener
     {
         self::$instance = $this;
         $this->cooldown = new Config($this->getDataFolder(). "cooldowns.yml", Config::YAML);
-        $this->ecooldown = new Config($this->getDataFolder(). "enchantgcooldowns.yml", Config::YAML); 
+        $this->ecooldown = new Config($this->getDataFolder(). "enchantcooldowns.yml", Config::YAML); 
         $this->getDataFolder();
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
     }
