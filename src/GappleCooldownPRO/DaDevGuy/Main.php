@@ -82,8 +82,8 @@ class Main extends PluginBase implements Listener
     }
 
     public function hasCooldown($player) : bool {
-        if($this->cooldown->exists($player->getLowerCaseName())){
-            if(microtime(true) >= $this->cooldown->get($player->getLowerCaseName())){
+        if($this->cooldown->exists($player->getName())){
+            if(microtime(true) >= $this->cooldown->get($player->getName())){
                 $this->removeCooldown($player);
                 return false;
             }else{
@@ -95,8 +95,8 @@ class Main extends PluginBase implements Listener
     }
 
     public function hasEnchantedCooldown($player) : bool {
-        if($this->ecooldown->exists($player->getLowerCaseName())){
-            if(microtime(true) >= $this->ecooldown->get($player->getLowerCaseName())){
+        if($this->ecooldown->exists($player->getName())){
+            if(microtime(true) >= $this->ecooldown->get($player->getName())){
                 $this->removeEnchantedCooldown($player);
                 return false;
             }else{
@@ -126,7 +126,7 @@ class Main extends PluginBase implements Listener
     }
 
     public function getEnchantedCooldownSeconds($player){
-        return $this->ecooldown->get($player->getLowerCaseName()) - microtime(true);
+        return $this->ecooldown->get($player->getName()) - microtime(true);
     }
 
 
@@ -135,12 +135,12 @@ class Main extends PluginBase implements Listener
     }
 
     public function addCooldown($player){
-        $this->cooldown->set($player->getLowerCaseName(), microtime(true) + $this->getConfig()->get("cooldown-seconds"));
+        $this->cooldown->set($player->getName(), microtime(true) + $this->getConfig()->get("cooldown-seconds"));
         $this->cooldown->save();
     }
 
     public function addEnchantedCooldown($player){
-        $this->ecooldown->set($player->getLowerCaseName(), microtime(true) + $this->getConfig()->get("enchanted-cooldown-seconds"));
+        $this->ecooldown->set($player->getName(), microtime(true) + $this->getConfig()->get("enchanted-cooldown-seconds"));
         $this->ecooldown->save();
     }
 }
