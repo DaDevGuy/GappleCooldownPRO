@@ -12,6 +12,10 @@ use pocketmine\utils\Config;
 class Main extends PluginBase implements Listener
 {
     public static $instance = null;
+    
+    public $cooldown;
+
+    public $ecooldown;
 
     public function onEnable(): void
     {
